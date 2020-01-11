@@ -277,9 +277,10 @@ This section will introduce the construction method of historical record databas
 %Given $\mathcal{T}=\left\{\left(T, A_{r}\right)\right\}$, which is the set of all ontology matching tasks $T$ and their corresponding reference matches $A_{r}$ that have been matched in history and have known reference matches.
 %For the ontology matching system $M$, using the particle swarm optimization tuning method, i.e. $M T\left(T, M, A_{r}\right)=\vec{P} \in \mathcal{P}$, the historical record database $\mathcal{K}$ can be constructed as follows, so that it contains each ontology matching task and its corresponding optimal parameter value vector:
 For the ontology matching system $M$, using the particle swarm optimization tuning method, i.e. $M T\left(T, M, A_{r}\right)=\vec{P} \in \mathcal{P}$, the historical record database $\mathcal{K}$ that contains each ontology matching task and its corresponding optimal parameter value vector can be constructed as follows:
-$$
+\begin{equation}
+	\numberwithin{equation}{section}
 \mathcal{K}=\left\{\left(T, M T\left(T, M, A_{r}\right)\right) |\left(T, A_{r}\right) \in \mathcal{T}\right\}
-$$
+\end{equation}
 where $\mathcal{T}=\left\{\left(T, A_{r}\right)\right\}$, which is the set of all ontology matching tasks $T$ and their corresponding reference matches $A_{r}$ that have been matched in history and have known reference matches.
 
 Assuming that there are only historical matching tasks ${T_{1}}$ and ${T_{2}}$,
@@ -410,7 +411,7 @@ where $\mathcal{H}_{1}$,$\mathcal{H}_{2}$ are class hierarchies of $O_{1}$ and $
 
 
 An example from the problem definition is used below to illustrate how $\text{TM}$ is calculated.
-Suppose the class structure hierarchies of the two ontology $O_{1}$, $O_{2}$ is shown in Figure \ref{fig:onto_matching_ex},
+Suppose the class structure hierarchies of the two ontology $O_{1}$, $O_{2}$ is shown in Figure\ref{fig:onto_matching_ex},
 and $C_{1} = \texttt{People}$, $C_{2} = \texttt{Staff}$.
 It can be seen that the parent class of $C_{1}$ is only $C_{1a} = \texttt{CSDepartmentUS}$,
 and the subclass are $C_{1b} = \texttt{Faculty}$ and $C_{1c} = \texttt{Staff}$;
@@ -682,7 +683,7 @@ Combined feature 	& \texttt {rNInstances} & ratio of number of instances \\
 
 \subsection{Extra-Trees-Based Approach for Ontology Matching Tuning}
 
-First define a single ontology feature index extraction function $\vec{Des}(O)$ and a dual ontology combined feature index extraction function $\vec{Des_d}(T)$.It can extract the definitions in the table \ref{table:onto_descriptors} in the ontology $O$ and the matching task $T$ respectively.Combine the single ontology feature index with the dual ontology feature index and return them in order.
+First define a single ontology feature index extraction function $\vec{Des}(O)$ and a dual ontology combined feature index extraction function $\vec{Des_d}(T)$.It can extract the definitions in the table\ref{table:onto_descriptors} in the ontology $O$ and the matching task $T$ respectively.Combine the single ontology feature index with the dual ontology feature index and return them in order.
 
 The construction method of history can be seen in \ref{eq:def_kbase}.
 Given the known historical record $\mathcal{K}$, the following method can be used to construct the training sample set $D$ of the ERT machine learning model:
@@ -784,7 +785,7 @@ All matching tasks match a certain ontology (including the original ontology) wi
 The conference dataset contains 15 real-world ontologies used to describe the field of conference organization. There are not only equivalent (ie, $=$) matching between ontology, but also containing matching (ie, $<=$ ).
 
 The anatomy data set contains two real large ontology, describing the human anatomy and adult mouse anatomy with reference match.
-see \ref{table:dataset} for an overview of the datasets that are used in this paper.
+see table\ref{table:dataset} for an overview of the datasets that are used in this paper.
 
 \begin{table}[ht]
 \centering
@@ -926,7 +927,7 @@ The effectiveness analysis of the tuning method is mainly to analyze whether the
 \end{figure}
 
 
-It can be seen from \ref{Falcon-AO_F1-Measure} that the proposed method (ie, the result corresponding to the History method and the ERT method) used on the benchmark, conference, and anatomy data sets can both improve the F1 value of the Falcon-AO matching result compared to the default parameter matching method (ie, the result corresponding to the Default method).
+It can be seen from figure\ref{fig:Falcon-AO_F1-Measure} that the proposed method (ie, the result corresponding to the History method and the ERT method) used on the benchmark, conference, and anatomy data sets can both improve the F1 value of the Falcon-AO matching result compared to the default parameter matching method (ie, the result corresponding to the Default method).
 Among them, the effect of the History method and the ERT method on the conference dataset is very obvious, and the results of the Default methods are both improved by about 16.6\%, which are very close to the tuning results of the LHS-PSO method. The ontology in the dataset is real and has practical significance, so using both methods can easily find the historical tasks with similarities and work well.
 Although the average improvement of the History method on the benchmark dataset can reach about 3.6\%, for the tasks of 201-202, the effect of this method is not obvious, which is almost the same as the Default method.
 Through observation, we find that the content of the ontology in this part of the task is relatively random. For example, the names of all entities are random strings, which means that searching for similar matching tasks in the history database cannot get very meaningful. As a result, the improvement of the History method is very limited.
@@ -954,7 +955,7 @@ This is even more reflected in its improvement of about 12.5\% on the benchmark 
 \end{figure}
 
 
-It can be seen from \ref{fig:Lily_F1-Measure} that on the three datasets of benchmark, conference, and anatomy, using the History and the ERT method can improve the F1 value of the Lily matching to a certain extent. The only exception is on the task group 248-266. The History method will slightly reduce the results, which may be because the ontology in this group of tasks also has a high randomness (in fact, it is even greater than the randomness in 201-202), which is very difficult to find similar historical matching task.
+It can be seen from figure\ref{fig:Lily_F1-Measure} that on the three datasets of benchmark, conference, and anatomy, using the History and the ERT method can improve the F1 value of the Lily matching to a certain extent. The only exception is on the task group 248-266. The History method will slightly reduce the results, which may be because the ontology in this group of tasks also has a high randomness (in fact, it is even greater than the randomness in 201-202), which is very difficult to find similar historical matching task.
 In addition, on the Lily system, the overall improvement is lower than that of the Falcon-AO system, which shows that the two tuning methods are not completely the same for different ontology matching systems. And this is actually related to the internal principles of closely.
 
 \begin{figure}[htb!]\centering
@@ -976,7 +977,7 @@ In addition, on the Lily system, the overall improvement is lower than that of t
 \end{minipage}
 \end{figure}
 
-It can be seen from \ref{fig:OLA_F1-Measure} that for the OLA system, the ERT method is effective on both datasets, but the effect of using the History method and the Default method on the benchmark dataset is almost the same.
+It can be seen from figure\ref{fig:OLA_F1-Measure} that for the OLA system, the ERT method is effective on both datasets, but the effect of using the History method and the Default method on the benchmark dataset is almost the same.
 This may be because the performance of the OLA system on the benchmark dataset is not sensitive enough to the change in parameters, and it is difficult to reflect the effect of optimizing parameters from the results.
 However, the effect of the History method on the conference dataset is still very obvious, and its 14.4\% improvement is even slightly better than the ERT method's 13.5\% improvement.
 
@@ -999,7 +1000,7 @@ However, the effect of the History method on the conference dataset is still ver
 \end{minipage}
 \end{figure}
 
-As can be seen from \ref{fig:GMap_F1-Measure}, \ref{fig:LogMap_F1-Measure}, \ref{fig:RiMOM_F1-Measure}, and \ref{fig:XMap_F1-Measure}, the F1 value of GMap, LogMap, RiMOM, and XMap matching results can be improved on the benchmark, conference, and anatomy datasets using the History method and the ERT method. There are  approximately 7.4\% and 6.8\% improvement on the conference dataset of the LogMap system and the XMap system, about 13.2\% improvement by the benchmark dataset of the RiMOM system, and 17.5\% and 20.4\% improvement on the ERT method on the benchmark dataset of the GMap system and RiMOM respectively. In addition, the performance of the GMap system, LogMap system, and XMap system on the benchmark dataset improved by about 6.5\%, 7.4\%, and 6.8\% respectively.
+As can be seen from figure\ref{fig:GMap_F1-Measure}, figure\ref{fig:LogMap_F1-Measure}, figure\ref{fig:RiMOM_F1-Measure}, and figure\ref{fig:XMap_F1-Measure}, the F1 value of GMap, LogMap, RiMOM, and XMap matching results can be improved on the benchmark, conference, and anatomy datasets using the History method and the ERT method. There are  approximately 7.4\% and 6.8\% improvement on the conference dataset of the LogMap system and the XMap system, about 13.2\% improvement by the benchmark dataset of the RiMOM system, and 17.5\% and 20.4\% improvement on the ERT method on the benchmark dataset of the GMap system and RiMOM respectively. In addition, the performance of the GMap system, LogMap system, and XMap system on the benchmark dataset improved by about 6.5\%, 7.4\%, and 6.8\% respectively.
 The only exception is the use of the LogMap system and the History method on the 248-266 task group, which will slightly reduce the performance.
 
 In the analysis of this part, it is not difficult to find that for most matching tasks of most systems, the effects of the four methods (ie, the F1 value) are increasing stepwise.
@@ -1029,11 +1030,11 @@ This shows that our proposed method is effective.
 %\end{figure}
 
 First look at the F1 value experimental results of the Falcon-AO system.
-As shown \ref{fig:MultiRegress_Falcon-AO_F1-Measure}, it can be clearly seen that basically on each data set, the system has significantly improved F1 value compared to the default parameter (default tuning method) after the ml tuning method, and this improvement does not exceed the ideal situation The upper limit, which is in line with experimental expectations.
+As shown figure\ref{fig:MultiRegress_Falcon-AO_F1-Measure}, it can be clearly seen that basically on each data set, the system has significantly improved F1 value compared to the default parameter (default tuning method) after the ml tuning method, and this improvement does not exceed the ideal situation The upper limit, which is in line with experimental expectations.
 Among them, the conference dataset has the most improvement, about 16.6\% improvement, and it is very close to the tuning result of the lhspso method. This may be because the ontology in this dataset is real and has practical significance, machine learning model can easily find the rules of parameter prediction in such datasets.
 At the same time, the overall average F-value of the benchmark is also significantly improved by 6.24\%, which shows that the default parameter configuration does not fully exert the capabilities of the matching system. The lhspso tuning method reflects the room for improvement. Our proposed ml tuning method is constantly approaching this upper limit.
 The main improvement of Falcon-AO on the benchmark dataset is still derived from the improvement of the task 248-266. This task has a large change in partial structure. It is not obvious that the ontology in this task is a partial-text layer change, which means that the parameters in the structure matcher of Falcon-AO are more sensitive than those in the text matcher. And changes in these parameters are more likely to affect the matching result.
-the \ref{fig:MulRegress_Falcon_AO_P} reflects the change in P-value precision, and the \ref{fig:MulRegress_Falcon_AO_R} reflects the change in R-value recall. The two indicators of F1 value reflect the overall performance of the matching results.
+the figure\ref{fig:MulRegress_Falcon_AO_P} reflects the change in P-value precision, and the figure\ref{fig:MulRegress_Falcon_AO_R} reflects the change in R-value recall. The two indicators of F1 value reflect the overall performance of the matching results.
 The change of the R value is basically the same as the change of the F1 value. The P value in the 248-266 and anatomy tasks has decreased compared to the default parameter. This may be because of in the Falcon-AO system, the parameters predicted by the ml tuning method are more inclined to improve the recall rate to find more correct matches, and the change of these parameters sacrifices a certain P-value, but the F1-value is still improved in the final balance. From this we can know that the improvement of F1-value in Falcon-AO system mainly comes from the increase of R value.
 
 \begin{figure}[htb!]\centering
@@ -1083,11 +1084,11 @@ The change of the R value is basically the same as the change of the F1 value. T
 %\end{minipage}
 %\end{figure}
 
-The result of the RiMOM is shown in \ref{fig:MultiRegress_RiMOM_F1-Measure}. in general, on each dataset, the system still has a very obvious improvement on F1-value after ml tuning, and the performance on benchmark data set has improved by an average of 13.74\%.
+The result of the RiMOM is shown in figure\ref{fig:MultiRegress_RiMOM_F1-Measure}. in general, on each dataset, the system still has a very obvious improvement on F1-value after ml tuning, and the performance on benchmark data set has improved by an average of 13.74\%.
 After the parameter tuning of the RiMOM system, the matching accuracy has increased a lot, which almost approaches the upper limit of the ideal situation.
 This shows that the model learns very well during the training process, and almost all the laws of parameter changes in the RiMOM system have been learned. So it is very accurate when making predictions, and the result is close to ideal.
 At the same time, this also shows that the matching performance of the RiMOM system has a lot of room for improvement, and the study of parameter tuning is of great significance.
-In the experimental results of the P and R values shown in \ref{fig:MultiRegress_RiMOM_P} and \ref{fig:MultiRegress_RiMOM_R}, we can find that, unlike Falcon-AO, the accuracy and recall of RiMOM have been improved to different degrees after tuning (the R value increases more greatly) ), which shows that the final improvement of F1-value of the RiMOM mainly comes from the increase of the P and R values.
+In the experimental results of the P and R values shown in figure\ref{fig:MultiRegress_RiMOM_P} and figure\ref{fig:MultiRegress_RiMOM_R}, we can find that, unlike Falcon-AO, the accuracy and recall of RiMOM have been improved to different degrees after tuning (the R value increases more greatly) ), which shows that the final improvement of F1-value of the RiMOM mainly comes from the increase of the P and R values.
 
 %\begin{figure}[htb!]\centering
 %\begin{subfigure}{\textwidth}
@@ -1141,13 +1142,13 @@ In the experimental results of the P and R values shown in \ref{fig:MultiRegress
 \caption{results of RiMOM}
 \end{figure}
 
-The \ref{fig:MultiRegress_Lily_F1} shows the experimental results of the F1 value of the Lily system.
+The figure\ref{fig:MultiRegress_Lily_F1} shows the experimental results of the F1 value of the Lily system.
 Comparing the two systems analyzed before, we can see that Lily's matching performance is not significantly improved after the ml tuning method.
 The possible reasons for the analysis are: on the one hand, the Lily system itself has performed very well on some data sets (for example, it maintains a world record of F1 value 0.9 on the benchmark dataset), and its matching algorithm itself is already too complicated to further improve the accuracy by the subsequent parameter tuning.
 In other words, the room that Lily can improve through tuning is very small, which can be seen from the upper limit of the lhspso tuning method.
 The {\it upper limit} is actually determined by the algorithm of the matching system itself. The tuning is only to approach this upper limit. On the other hand, we found an interesting phenomenon that there is a lot of randomness in the Lily system when running the task script for multiple times, that is, given a certain task, the same set of parameter configuration, running multiple times will have multiple different results.
 This {\it randomness} can easily lead to the randomness of the sample labels when constructing the training set, which will cause certain bias to the model training.
-Then from \ref{fig:MultiRegress_Lily_P} and \ref{fig:MultiRegress_Lily_R} ,the P-value has an insignificant improvement on some datasets, but the R value has decreased somewhat. These have led to a small increase in the overall F1 value.
+Then from figure\ref{fig:MultiRegress_Lily_P} and figure\ref{fig:MultiRegress_Lily_R} ,the P-value has an insignificant improvement on some datasets, but the R value has decreased somewhat. These have led to a small increase in the overall F1 value.
 
 \begin{figure}[htb!]\centering
 \begin{subfigure}{\textwidth}
@@ -1201,11 +1202,11 @@ Then from \ref{fig:MultiRegress_Lily_P} and \ref{fig:MultiRegress_Lily_R} ,the P
 %\end{minipage}
 %\end{figure}
 
-The \ref{fig:MultiRegress_LogMap_F1} shows the experimental results of the F1 value of the LogMap system.
+The figure\ref{fig:MultiRegress_LogMap_F1} shows the experimental results of the F1 value of the LogMap system.
 It can be seen that on the benchmark 221-247 and reference datasets, LogMap has significantly improved the matching accuracy after the ml tuning method compared to the default parameters: 3.9\% and 5.0\%, respectively.
 This shows that LogMap is relatively sensitive to some matcher parameters on the real ontology data set and some parameters in the structure matcher, and changes in these parameters can easily affect the matching results.
 The improvement on the anatomy dataset is not obvious, and the reason may be the same as Lily's performance on the benchmark: LogMap itself has the world's leading accuracy over the years of anatomy. The design of its built-in matching algorithm itself is already very good and it is difficult to pass Adjusting parameters to further improve the accuracy can be seen from the fact that lhspso is basically the same as the default tuning method. But in general, the experimental results of LogMap are in line with expectations, and the ml tuning method is effective on LogMap.
-As shown in \ref{fig:MultiRegress_LogMap_P} and \ref{fig:MultiRegress_LogMap_R} the improvement of the P value on the benchmark data set exceeds that of the R value, but it is the opposite on the reference data set. This shows that the overall F1 value of the LogMap system is improved on different data sets. Its dominance is also different.
+As shown in figure\ref{fig:MultiRegress_LogMap_P} and figure\ref{fig:MultiRegress_LogMap_R} the improvement of the P value on the benchmark data set exceeds that of the R value, but it is the opposite on the reference data set. This shows that the overall F1 value of the LogMap system is improved on different data sets. Its dominance is also different.
 
 \begin{figure}[htb!]\centering
 \begin{subfigure}{\textwidth}
@@ -1234,13 +1235,6 @@ As shown in \ref{fig:MultiRegress_LogMap_P} and \ref{fig:MultiRegress_LogMap_R} 
 \caption{results of LogMap}
 \end{figure}
 
-The results of the F1 value of the GMap system are shown in \ref{fig:MultiRegress_GMap_F1}.
-Similar to the RiMOM system, after the ml tuning on GMap , the matching accuracy has been significantly improved compared to the default parameters: the results on benchmark-avg and conference have approached their upper limits, increasing by 10.2\% and 3.9\%, respectively.
-It is interesting that the upper limit has been exceeded on 201-202-8, which may be due to the randomness in the GMap system.
-The improvement of GMap on 221-247 is not very obvious, it may be caused by the lack or insensitivity of parameters in its structural matching part.
-In general, the ml tuning method has achieved great performance on the GMap system. It improves the matching accuracy obtained by the default parameters to a nearly ideal level, effectively improving the quality of the matching results and the Usability of the GMap system.
-Then, as can be seen from \ref{fig:MultiRegress_GMap_P} and \ref{fig:MultiRegress_GMap_R}, GMap has improved the P value and R value of each data set, which shows that the great improvement of its overall F1 comes from the improvement of the two indicators.
-
 \begin{figure}[htb!]\centering
 \begin{subfigure}{\textwidth}
 	\centering
@@ -1268,10 +1262,17 @@ Then, as can be seen from \ref{fig:MultiRegress_GMap_P} and \ref{fig:MultiRegres
 \caption{results of GMap}
 \end{figure}
 
-The \ref{fig:MultiRegress_XMap_F1} shows the experimental results of the F1 value of the XMap system.
+The results of the F1 value of the GMap system are shown in figure\ref{fig:MultiRegress_GMap_F1}.
+Similar to the RiMOM system, after the ml tuning on GMap , the matching accuracy has been significantly improved compared to the default parameters: the results on benchmark-avg and conference have approached their upper limits, increasing by 10.2\% and 3.9\%, respectively.
+It is interesting that the upper limit has been exceeded on 201-202-8, which may be due to the randomness in the GMap system.
+The improvement of GMap on 221-247 is not very obvious, it may be caused by the lack or insensitivity of parameters in its structural matching part.
+In general, the ml tuning method has achieved great performance on the GMap system. It improves the matching accuracy obtained by the default parameters to a nearly ideal level, effectively improving the quality of the matching results and the Usability of the GMap system.
+Then, as can be seen from figure\ref{fig:MultiRegress_GMap_P} and figure\ref{fig:MultiRegress_GMap_R}, GMap has improved the P value and R value of each data set, which shows that the great improvement of its overall F1 comes from the improvement of the two indicators.
+
+The figure\ref{fig:MultiRegress_XMap_F1} shows the experimental results of the F1 value of the XMap system.
 Overall, the ml tuning method is still effective. Although the benchmark dataset has only increased by 1.8\%, the result on conference dataset has approached almost the upper limit, increasing by 4.74\%.
 The slight improvement on benchmark is in result of the improvement being small on 201-202-8. This group of tasks focuses on the text of the ontology, which indicates the parameters of the text matcher part in XMap are not sensitive, so that it is difficult to improve by adjusting the parameters.
-As shown in \ref{fig:MultiRegress_XMap_P} and \ref{fig:MultiRegress_XMap_R}, the upper limit of the P-value on 201-202-8 and 248-266 actually decreased, which means that lhspso sacrificed a certain P value in the particle swarm search and mainly inclining to the R value for the searching of optimal parameters.
+As shown in figure\ref{fig:MultiRegress_XMap_P} and figure\ref{fig:MultiRegress_XMap_R}, the upper limit of the P-value on 201-202-8 and 248-266 actually decreased, which means that lhspso sacrificed a certain P value in the particle swarm search and mainly inclining to the R value for the searching of optimal parameters.
 And it can be found that the overall improvement of the F1 value of the ml tuning method on the XMap is mainly due to the improvement of the increase of R value. This can also reflect that the internal design of the XMap system is biased towards the recall, that is, hoping to find more matching pairs.
 
 \begin{figure}[htb!]\centering
@@ -1301,10 +1302,10 @@ And it can be found that the overall improvement of the F1 value of the ml tunin
 \caption{results of XMap}
 \end{figure}
 
-The last system is OLA, and its F1 value experimental results are shown in \ref{fig:MultiRegress_OLA_F1}.
+The last system is OLA, and its F1 value experimental results are shown in figure\ref{fig:MultiRegress_OLA_F1}.
 Although the improvement of the OLA system after the ml tuning method is not obvious, it is improved by 0.3\% and 2.46\% on the benchmark and conference respectively. Therefore, the ml tuning method is still effective on the OLA system.
 The reason for the small improvement may be that the matching performance of the OLA system itself is too poor, and the built-in matching algorithm is too simple. These determine that the upper limit of tuning would not be high, so it is difficult to improve the matching accuracy through parameter tuning.
-Then, from the P and R value reflected in \ref{fig:MultiRegress_OLA_P} and \ref{fig:MultiRegress_OLA_R}, the improvement is not obvious for the same reasons as above.
+Then, from the P and R value reflected in figure\ref{fig:MultiRegress_OLA_P} and figure\ref{fig:MultiRegress_OLA_R}, the improvement is not obvious for the same reasons as above.
 
 \begin{figure}[htb!]\centering
 \begin{subfigure}{\textwidth}
@@ -1346,6 +1347,35 @@ In order not to lose the generality,  the analysis of the two original experimen
 
 {\bf Experiment of Similarity and ERT Model-Based Ontology Tuning}
 
+%\begin{figure}[htb!]\centering
+%\begin{subfigure}{\textwidth}
+%	\centering
+%\includegraphics[width=0.45\textwidth]{figures/legend.pdf}
+%\end{subfigure}
+%\begin{subfigure}{0.3\textwidth}
+%	\centering
+%\includegraphics[width=\textwidth]{data_figs/benchmark_101_F1-Measure.pdf}
+%\caption{F1-Measure}
+%\label{fig:benchmark_101_F1-Measure}
+%\end{subfigure}
+%%\vskip 1em
+%\begin{subfigure}{0.3\textwidth}
+%	\centering
+%\includegraphics[width=\textwidth]{data_figs/benchmark_101_Precision.pdf}
+%\caption{Precision}
+%\label{fig:benchmark_101_Precision}
+%\end{subfigure}
+%\begin{subfigure}{0.3\textwidth}
+%	\centering
+%\includegraphics[width=\textwidth]{data_figs/benchmark_101_Recall.pdf}
+%\caption{Recall}
+%\label{fig:benchmark_101_Recall}
+%\end{subfigure}
+%\caption{results of OLA}
+%\end{figure}
+
+
+
 \begin{figure}[htb!]\centering
 \begin{subfigure}{\textwidth}
 	\centering
@@ -1353,18 +1383,18 @@ In order not to lose the generality,  the analysis of the two original experimen
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 	\centering
-\includegraphics[width=0.3\textwidth]{data_figs/benchmark_101_F1-Measure.pdf}
+\includegraphics[width=\textwidth]{data_figs/benchmark_101_F1-Measure.pdf}
 \caption{F1-Measure}
 \label{fig:benchmark_101_F1-Measure}
 \end{subfigure}
-%\vskip 0.5em
-\begin{subfigure}{0.3\textwidth}
+\vskip 0.5em
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/benchmark_101_Precision.pdf}
 \caption{Precision}
 \label{fig:benchmark_101_Precision}
 \end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/benchmark_101_Recall.pdf}
 \caption{Recall}
@@ -1373,29 +1403,29 @@ In order not to lose the generality,  the analysis of the two original experimen
 \caption{The results of all systems on benchmark 101}
 \end{figure}
 
-From \ref{fig:benchmark_101_Recall}, the task NO.101 of the benchmark dataset, the original ontology, matches itself.
+From figure\ref{fig:benchmark_101_Recall}, the task NO.101 of the benchmark dataset, the original ontology, matches itself.
 The semantic information contained in the original ontology is the most accurate and complete, so the matching effect of each ontology matching system is better.
-It can be seen from \ref{fig:benchmark_101_Recall} that the effects of the LogMap system and the XMap system have been significantly improved by the methods, and both have achieved the effect of tuning using the LHS-PSO method.
+It can be seen from figure\ref{fig:benchmark_101_Recall} that the effects of the LogMap system and the XMap system have been significantly improved by the methods, and both have achieved the effect of tuning using the LHS-PSO method.
 For the other systems, the effect of the three auto-tuning methods is not obvious, which may be due to the better default matching configuration (for example, the F1 values of Falcon-AO, Lily, and RiMOM systems using the Default method have been Up to 1.0), and it is very difficult to improve the matching effect by parameter tuning.
 \begin{figure}[htb!]\centering
 \begin{subfigure}{\textwidth}
 	\centering
 \includegraphics[width=0.45\textwidth]{figures/legend.pdf}
 \end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.5\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/benchmark_201-202_F1-Measure.pdf}
 \caption{F1-Measure}
 \label{fig:benchmark_201-202_F1-Measure}
 \end{subfigure}
-%\vskip 1em
-\begin{subfigure}{0.3\textwidth}
+\vskip 1em
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/benchmark_201-202_Precision.pdf}
 \caption{Precision}
 \label{fig:benchmark_201-202_Precision}
 \end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/benchmark_201-202_Recall.pdf}
 \caption{Recall}
@@ -1408,12 +1438,12 @@ For the other systems, the effect of the three auto-tuning methods is not obviou
 In the benchmark dataset, the ontology corresponding to 201-202 matching tasks is obtained by replacing the entity name or comment in the original ontology with a random string. The large amount of text information in the obtained ontology will no longer have practical significance.
 If the reference ratio of the text information in the ontology matching system can be reduced by adjusting the parameters, a better matching result may be obtained.
 This shows the necessity for parameter tuning.
-As can be seen from \ref{fig:benchmark_201-202_F1-Measure}, on most ontology matching systems, the method proposed in this paper is effective, especially in the GMap and RiMOM systems.
+As can be seen from figure\ref{fig:benchmark_201-202_F1-Measure}, on most ontology matching systems, the method proposed in this paper is effective, especially in the GMap and RiMOM systems.
 It can also be seen that the effect of the ERT method is better than that of the History method on multiple systems. This may be because the ERT method can achieve more precise tuning of parameters.
 Specifically, an ontology matching system often has multiple parameters, of which only a few may be set for the reference ratio of text information.
 In this task, if focusing on tuning these related parameters, the desired results may be obtained.
 
-From \ref{fig:benchmark_201-202_Precision} and \ref{fig:benchmark_201-202_Recall}, it is not difficult to see that, for most systems, the improvement of the tuning effect comes from the joint improvement of the P and R value.
+From figure\ref{fig:benchmark_201-202_Precision} and figure\ref{fig:benchmark_201-202_Recall}, it is not difficult to see that, for most systems, the improvement of the tuning effect comes from the joint improvement of the P and R value.
 A special case is the result of the XMap system using the LHS-PSO method for tuning. It can be found that the improvement of the final tuning comes from a significant increase in the R value (about 94.4\%), but many of them are offset by the reducing of P value (about 34.6\%).
 This actually reflects a problem: in the experiment, the only indicator to determine the tuning effect is the F1 value, but whether the increase in F1 value will cause other impacts (such as making the P value significantly lower) is not considered. The result of this tuning may not be exactly what the user wants.
 It can improved by considering optimizing the indicator, such as adding a bias measurement part to the F1 value to avoid being too biased toward the P or R value, and so on.
@@ -1423,20 +1453,20 @@ It can improved by considering optimizing the indicator, such as adding a bias m
 	\centering
 \includegraphics[width=0.45\textwidth]{figures/legend.pdf}
 \end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.5\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/benchmark_221-247_F1-Measure.pdf}
 \caption{F1-Measure}
 \label{fig:benchmark_221-247_F1-Measure}
 \end{subfigure}
-%\vskip 1em
-\begin{subfigure}{0.3\textwidth}
+\vskip 1em
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/benchmark_221-247_Precision.pdf}
 \caption{Precision}
 \label{fig:benchmark_221-247_Precision}
 \end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/benchmark_221-247_Recall.pdf}
 \caption{Recall}
@@ -1447,34 +1477,61 @@ It can improved by considering optimizing the indicator, such as adding a bias m
 
 Different from tasks 201-202, the transformation of ontology in this group of tasks 221-2247 mainly focuses on the conceptual structure. The methods of transformation include changing or removing structural information, removing instances, removing attributes, etc.
 Similarly, if the reference ratio of the structural hierarchy information in the ontology matching system can be reduced by adjusting the parameters, a better matching result may be obtained.
-It can be seen from \ref{fig:benchmark_221-247_F1-Measure} that the matching results of this task are similar to task NO.101. The method proposed in this paper can improve the matching results on the LogMap and XMap systems.
+It can be seen from figure\ref{fig:benchmark_221-247_F1-Measure} that the matching results of this task are similar to task NO.101. The method proposed in this paper can improve the matching results on the LogMap and XMap systems.
 And compared to the 201-202 tasks, in this matching task, each system can achieve better results. This may be because each system has less dependence on the structural information in the ontology, or most matching relationships can be easily determined by text information.
 
-Similar to the situation of the NO.101 task, As shown in \ref{fig:benchmark_221-247_Precision}, the changing trend of P value of the matching results of each system is similar to the F1 value, that is, the P value of most systems is not affected by the tuning method and still keeps at a high level. The P values of the LogMap system and the XMap system have improved to a certain extent. It can be obtained that for these two systems, the rise in the P value is a factor driving the rise in the F1 value.
-From \ref{fig:benchmark_221-247_Recall}, we can find that the R values of all systems are maintained at the highest level, with the exception of LogMap and XMap.Each tuning method can improve its R value.
+Similar to the situation of the NO.101 task, As shown in figure\ref{fig:benchmark_221-247_Precision}, the changing trend of P value of the matching results of each system is similar to the F1 value, that is, the P value of most systems is not affected by the tuning method and still keeps at a high level. The P values of the LogMap system and the XMap system have improved to a certain extent. It can be obtained that for these two systems, the rise in the P value is a factor driving the rise in the F1 value.
+From figure\ref{fig:benchmark_221-247_Recall}, we can find that the R values of all systems are maintained at the highest level, with the exception of LogMap and XMap.Each tuning method can improve its R value.
 In summary, the improvement of the tuning result of the LogMap system comes from the improvement of the P and R values, while the improvement of the XMap system effect only comes from the improvement of the P value. The P and R values of other systems remain unchanged, so the tuning effect is not unchanged.
+
+%\begin{figure}[htb!]\centering
+%\begin{subfigure}{\textwidth}
+%	\centering
+%\includegraphics[width=0.45\textwidth]{figures/legend.pdf}
+%\end{subfigure}
+%\begin{subfigure}{\textwidth}
+%	\centering
+%\includegraphics[width=0.5\textwidth]{data_figs/benchmark_248-266_F1-Measure.pdf}
+%\caption{F1-Measure}
+%\label{fig:benchmark_248-266_F1-Measure}
+%\end{subfigure}
+%\vskip 1em
+%\begin{subfigure}{\textwidth}
+%	\centering
+%\includegraphics[width=0.49\textwidth]{data_figs/benchmark_248-266_Precision.pdf}
+%\caption{Precision}
+%\label{fig:benchmark_248-266_Precision}
+%\end{subfigure}
+%\begin{subfigure}{\textwidth}
+%	\centering
+%\includegraphics[width=0.49\textwidth]{data_figs/benchmark_248-266_Recall.pdf}
+%\caption{Recall}
+%\label{fig:benchmark_248-266_Recall}
+%\end{subfigure}
+%\caption{The results of all systems on benchmark 248-266}
+%\end{figure}
 
 \begin{figure}[htb!]\centering
 \begin{subfigure}{\textwidth}
 	\centering
 \includegraphics[width=0.45\textwidth]{figures/legend.pdf}
 \end{subfigure}
-\begin{subfigure}{\textwidth}
+\begin{subfigure}{0.5\textwidth}
 	\centering
-\includegraphics[width=0.3\textwidth]{data_figs/benchmark_248-266_F1-Measure.pdf}
+\includegraphics[width=\textwidth]{data_figs/benchmark_248-266_F1-Measure.pdf}
 \caption{F1-Measure}
 \label{fig:benchmark_248-266_F1-Measure}
 \end{subfigure}
 \vskip 1em
-\begin{subfigure}{\textwidth}
+\begin{subfigure}{0.49\textwidth}
 	\centering
-\includegraphics[width=0.3\textwidth]{data_figs/benchmark_248-266_Precision.pdf}
+\includegraphics[width=\textwidth]{data_figs/benchmark_248-266_Precision.pdf}
 \caption{Precision}
 \label{fig:benchmark_248-266_Precision}
 \end{subfigure}
-\begin{subfigure}{\textwidth}
+\begin{subfigure}{0.49\textwidth}
 	\centering
-\includegraphics[width=0.3\textwidth]{data_figs/benchmark_248-266_Recall.pdf}
+\includegraphics[width=\textwidth]{data_figs/benchmark_248-266_Recall.pdf}
 \caption{Recall}
 \label{fig:benchmark_248-266_Recall}
 \end{subfigure}
@@ -1482,10 +1539,10 @@ In summary, the improvement of the tuning result of the LogMap system comes from
 \end{figure}
 
 The transformation of the task NO.248-266 relative to the original ontology can be regarded as a combination of the above two sets of task transformation methods, that is, it contains both text information and structural hierarchy information.
-According to \ref{fig:benchmark_248-266_F1-Measure}, the method proposed in this paper has certain effects on each ontology matching system (except that the History method will slightly reduce the performance of the Lily system and LogMap system).
+According to figure\ref{fig:benchmark_248-266_F1-Measure}, the method proposed in this paper has certain effects on each ontology matching system (except that the History method will slightly reduce the performance of the Lily system and LogMap system).
 This may be because the features of the ontology in this task are relatively disturbed. Therefore, when performing the matching task, each system cannot be sure as before to determine the matching relationship,which indicates that the internal tuning mechanism of parameter tuning need more detailed planning and adjustments.
 
-From \ref{fig:benchmark_248-266_Precision} and \ref{fig:benchmark_248-266_Recall}, it can be known that on the 248-266 task, the P and R value of each system start to show some new changes with the tuning method, even though the F1 values are basically increase under the action of each tuning method.
+From figure\ref{fig:benchmark_248-266_Precision} and figure\ref{fig:benchmark_248-266_Recall}, it can be known that on the 248-266 task, the P and R value of each system start to show some new changes with the tuning method, even though the F1 values are basically increase under the action of each tuning method.
 The mainstream trend is still that the final result is improved with the common increase of P and R value. The final effect of some systems is the result of the combined effect of the P value and the R value (such as the XMap system). And some are reduced (for example, the Lily and LogMap systems use the History method), which are caused by the decreasing of the P and R values.
 
 \begin{figure}[htb!]\centering
@@ -1493,20 +1550,20 @@ The mainstream trend is still that the final result is improved with the common 
 	\centering
 \includegraphics[width=0.45\textwidth]{figures/legend.pdf}
 \end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.5\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/benchmark_average_F1-Measure.pdf}
 \caption{F1-Measure}
 \label{fig:benchmark_average_F1-Measure}
 \end{subfigure}
-%\vskip 1em
-\begin{subfigure}{0.3\textwidth}
+\vskip 1em
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/benchmark_average_Precision.pdf}
 \caption{Precision}
 \label{fig:benchmark_average_Precision}
 \end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/benchmark_average_Recall.pdf}
 \caption{Recall}
@@ -1515,11 +1572,11 @@ The mainstream trend is still that the final result is improved with the common 
 \caption{Average results of each system on the benchmark}
 \end{figure}
 
-\ref{fig:benchmark_average_F1-Measure} shows the comparison of the average results of each ontology matching system on each task of the benchmark dataset. It can be seen that after synthesizing the results of the previous tasks, the method has certain effects on each ontology matching system. The most obvious one is the RiMOM system. About 20\% improvement of F1 value are brought by using the ERT method.
+figure\ref{fig:benchmark_average_F1-Measure} shows the comparison of the average results of each ontology matching system on each task of the benchmark dataset. It can be seen that after synthesizing the results of the previous tasks, the method has certain effects on each ontology matching system. The most obvious one is the RiMOM system. About 20\% improvement of F1 value are brought by using the ERT method.
 In comparison, the improvement of OLA and LogMap is not very obvious, which indicates that the effect of parameter tuning will be largely restricted by the design of the ontology matching system itself.
 Moreover, on all systems, the method has not yet fully achieved the effect of the LHS-PSO, which shows that our method still has some room for improvement on the benchmark dataset.
 
-As shown in \ref{fig:benchmark_average_Precision} and \ref{fig:benchmark_average_Recall}, the improvement of the effect of each system may come from the joint improvement of the P and R values, or it may be the result of the combined effect of the two.
+As shown in figure\ref{fig:benchmark_average_Precision} and figure\ref{fig:benchmark_average_Recall}, the improvement of the effect of each system may come from the joint improvement of the P and R values, or it may be the result of the combined effect of the two.
 In addition, the change trend of the F1 value on each system is more similar to the change trend of the R value, which may explain that on the benchmark dataset, the main reason for the improvement in the final matching effect is the increase in the R value, or in other words, the recall is the key factor to improve the matching result,which is the difficulty of ontology matching.
 
 \begin{figure}[htb!]\centering
@@ -1527,20 +1584,20 @@ In addition, the change trend of the F1 value on each system is more similar to 
 	\centering
 \includegraphics[width=0.45\textwidth]{figures/legend.pdf}
 \end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.5\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/conference_average_F1-Measure.pdf}
 \caption{F1-Measure}
 \label{fig:conference_average_F1-Measure}
 \end{subfigure}
-%\vskip 1em
-\begin{subfigure}{0.3\textwidth}
+\vskip 1em
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/conference_average_Precision.pdf}
 \caption{Precision}
 \label{fig:conference_average_Precision}
 \end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/conference_average_Recall.pdf}
 \caption{Recall}
@@ -1549,7 +1606,7 @@ In addition, the change trend of the F1 value on each system is more similar to 
 \caption{Average results of each system on the conference}
 \end{figure}
 
-\ref{fig:conference_average_F1-Measure} shows the comparison of the average results of each task using each ontology matching system on the conference dataset.
+figure \ref{fig:conference_average_F1-Measure} shows the comparison of the average results of each task using each ontology matching system on the conference dataset.
 All the ontology contained in this dataset are real ontologies used to describe the organization of the conference.
 It can be seen that the method has certain effects on each ontology matching system.
 Compared with the tuning results on the benchmark dataset, the effect of this method on the conference dataset is not so obvious, And on multiple systems, the performance of our method has reached that of LHS-PSO.
@@ -1560,20 +1617,20 @@ This illustrates the difficult nature of each system to tune on the conference d
 	\centering
 \includegraphics[width=0.45\textwidth]{figures/legend.pdf}
 \end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.5\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/anatomy_anatomy_F1-Measure.pdf}
 \caption{F1-Measure}
 \label{fig:anatomy_anatomy_F1-Measure}
 \end{subfigure}
-%\vskip 1em
-\begin{subfigure}{0.3\textwidth}
+\vskip 1em
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/anatomy_anatomy_Precision.pdf}
 \caption{Precision}
 \label{fig:anatomy_anatomy_Precision}
 \end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.49\textwidth}
 	\centering
 \includegraphics[width=\textwidth]{data_figs/anatomy_anatomy_Recall.pdf}
 \caption{Recall}
@@ -1582,8 +1639,8 @@ This illustrates the difficult nature of each system to tune on the conference d
 \caption{Average results of each system on the anatomy}
 \end{figure}
 
-Figure \ref{fig:anatomy_anatomy_F1-Measure} shows a comparison of the results of each ontology matching system on the anatomy dataset task.
-According to the information in Table\ref{table:om_sys}, only three ontology matching systems (Falcon-AO, Lily, and LogMap) can successfully complete the test of the anatomy dataset, so there are result comparison of only three systems in the figure.
+Figure\ref{fig:anatomy_anatomy_F1-Measure} shows a comparison of the results of each ontology matching system on the anatomy dataset task.
+According to the information in table\ref{table:om_sys}, only three ontology matching systems (Falcon-AO, Lily, and LogMap) can successfully complete the test of the anatomy dataset, so there are result comparison of only three systems in the figure.
 Similar to the tuning results on the conference dataset, on the anatomy dataset, the method has certain effects on each ontology matching system. And it is not obvious compared with the tuning results on the benchmark dataset.
 But we can also find that our method has achieved the performance of the LHS-PSO on multiple systems.
 This illustrates the difficult nature of each system to tune on the anatomy dataset.
@@ -1591,73 +1648,125 @@ In fact, due to the large scale of the ontology in the anatomy dataset, in order
 
 In the analysis of this section, it can be seen that the method has a certain effect on multiple datasets with different ontology matching systems, which means that the method has certain generality.
 
-%\subsection{Experiments of Multiple Output Regression}
+{\bf Experiments of Multiple Output Regression}
 
+Figure\ref{fig:MulRegress_benchmark_F1} shows the overall F1 value of each matching system on the benchmark dataset.
+In general, after the ml tuning method, each system all has a certain improvement on the matching accuracy compared with its default parameters and didn't exceed the upper limit. This shows that on the benchmark dataset, the proposed tuning method is not only effective on each system but also universal: in matching systems of many different grades , the tuning method can bring improvement without exception, especially in RiMOM, Falcon-AO, and GMap.
 
+Figure\ref{fig:MulRegress_conference_F1} shows the overall F1 value performance of each matching system on the conference dataset.
+On the conference dataset, each system has relatively obvious default improvements. Therefore, on the conference dataset, our proposed tuning method also has good generality.
 
-\subsubsection{Generality}
-
-Figure 3.23 shows the overall F1 value performance of each matching system on the benchmark data set.
-In general, after the ml tuning method, each system has a certain improvement in the matching accuracy of its default parameters and does not exceed the upper limit. This shows that on the benchmark dataset, the proposed tuning method is not only in each system The above is effective and also universal: in many different grades of matching systems, the tuning method has been improved without exception, especially in RiMOM, Falcon-AO, and GMap.
-
-Figure 3.24 shows the overall F1 value performance of each matching system on the conference dataset.
-It can be seen that in the conference data set, each system has relatively obvious default improvements without exception. Therefore, on the conference data set, our proposed tuning method also has good generality.
-
-Figure 3.25 shows the overall F1 value performance of each matching system on the anatomy dataset.
-Because there are three systems supporting the anatomy dataset, not all systems are on the map.
-The anatomy task itself belongs to the category of large ontology matching, which has higher requirements on the matching algorithm itself, and the space for improvement through tuning is actually not large.
+Figure\ref{fig:MulRegress_anatomy_F1} shows the overall F1 value performance of each matching system on the anatomy dataset.
+Because there are only three systems supporting the anatomy dataset, not all systems are shown in fugure.
+The anatomy task itself belongs to the category of large ontology matching, which has higher requirements on the matching algorithm, and the room for improvement through tuning is actually small.
 However, despite this, each system has been improved after ml tuning: from left to right, it has improved by 2.24\%, 0.57\%, and 0.14\%, respectively. This shows that the ml tuning method is still universal on anatomy.
 
-In fact, during the experiment of tuning each system parameter, we also found some interesting phenomena and laws:
+In fact, during the experiment of tuning each system parameter,there are some interesting phenomena and laws:
 
-1.The fewer parameters to be tuned in the system, the more clearly the matching accuracy is improved after the ml tuning method, or the easier it is to be improved during the experiment.
-The adjustable parameters of GMap and RiMOM are 3 and 5, respectively, which are relatively few. At the same time, it can be found that the accuracy improvement of these two systems after tuning is very obvious.
-This phenomenon may be because the number of training samples is limited (only a few hundred). When there are fewer parameters in the system, the multi-output regression model is easier to learn the relationship between parameters and parameters. It will inevitably increase the learning cost of the model, and its prediction effect will also decrease, leading to a less significant improvement in accuracy. There are relatively many parameters to be adjusted in LogMap, Lily, and OLA, so it is difficult to improve the subsequent accuracy.
+1.The fewer parameters to be tuned in the system, the more clearly the matching accuracy is improved after the ml tuning method, or the more easily it is to be improved during the experiment.
+The adjustable parameters of GMap and RiMOM are 3 and 5, respectively, which are relatively few. At the same time, the accuracy improvement of these two systems after tuning is very obvious.
+This phenomenon may be because the number of training samples is limited (only a few hundred). When there are fewer parameters in the system, the multi-output regression model is easier to learn the relationship between parameters and parameters. And when threr are many parameters ,it will inevitably increase the learning cost of the model, and the prediction effect will also decrease, leading to a less significant improvement in accuracy. There are relatively many parameters to be adjusted in LogMap, Lily, and OLA, so it is difficult to improve the subsequent accuracy.
 
 2.When a system is improved by the lhspso tuning method compared to the default, that is, if the upper limit is high, the system can easily obtain a significant accuracy improvement through the ml tuning method.
-Although the Falcon-AO system has as many as 26 adjustable parameters, if from the perspective of the model, so few training samples are not conducive to model learning, but as shown in Figure 3.2, Falcon-AO The upper limit of the F1 value that can be improved is very high, so it still has a significant accuracy improvement after the ml tuning method. It can be understood that the high limit indicates that the system has great potential for improvement after tuning.
+Although the Falcon-AO system has as many as 26 adjustable parameters, from the perspective of the model, so few training samples are not conducive to model learning. But as shown in Figure\ref{fig:MultiRegress_Falcon_AO_F1-Measure}, The upper limit of the F1 value on each dataset can be improved highly, so there are still a significant accuracy improvement after the ml tuning method, that is ,the system has great potential for improvement after tuning.
 Conversely, if the upper limit itself is not high, the increase will not be too obvious after the ml tuning, because it will not exceed this upper limit.
 
 3.The randomness of the built-in algorithm of the system will affect the prediction effect of the regression model.
-Because each match has different F1 values if it is run multiple times under the same parameter configuration, this will inevitably affect the approximate optimal solution searched by the particle swarm algorithm and cause the training set to have randomness, which will affect the model prediction effect influences.
+Because each matching has different F1 values if it is run multiple times under the same parameter configuration, this will inevitably affect the approximate optimal solution searched by the particle swarm algorithm and cause the training set to have randomness, which will affect the model prediction.
 
-In the analysis of the above experimental results, we demonstrated the ml tuning method from the perspectives of effectiveness and versatility.
-The experimental results show that the ml tuning method is not only effective on each matching system, that is, it can improve the ease of use of the ontology matching system and the tuning accuracy of each system after tuning has been improved to some extent compared to the default; and The tuning method is also very versatile. It can play a role in many different grades of ontology matching systems, and it can be a universal module in the ontology matching system.
+\begin{figure}[htb!]\centering
+\begin{subfigure}{\textwidth}
+	\centering
+	\includegraphics[width=0.45\textwidth]{figures/t_legend.pdf}
+\end{subfigure}
+\begin{minipage}{0.3\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{data_figs/MulRegress_benchmark_F1.pdf}
+	\captionof{figure}{The F1-Measure of each system on benchmark}
+	\label{fig:MulRegress_benchmark_F1}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{data_figs/MulRegress_conference_F1.pdf}
+	\captionof{figure}{The F1-Measure of each system on conference}
+	\label{fig:MulRegress_conference_F1}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{data_figs/MulRegress_conference_F1.pdf}
+	\captionof{figure}{The F1-Measure of each system on anatomy}
+	\label{fig:MulRegress_anatomy_F1}
+\end{minipage}
+\end{figure}
 
-\subsubsection{Experiment of Machine Learning-Based Policy Tuning}
 
-For the strategy tuning method based on supervised learning, the training set of the experimental part is consistent with the test set and parameter tuning. It still uses the three classic task benchmarks, conferences, and anatoms for OAEI experiments, and the three years of OAEI 2012, 2013, and 2015. Data for training, OAEI2016 year for data testing.
+In the analysis of the above experimental results, it demonstrate the ml tuning method from the perspectives of effectiveness and generality.
+The results show that the ml tuning method is not only effective on each matching system, that is, it can improve the usability of the ontology matching system and the accuracy of each system after tuning has been improved to some extent compared to the default. And the tuning method is also versatile. It can work well on many ontology matching systems of different grades, and it can be a universal module in the ontology matching system.
+
+{\bf Experiment of Machine Learning-Based Policy Tuning}
+
+For the strategy tuning method based on supervised learning, the parameter tuning of training set is consistent with the test set. It is still experimented in three classic tasks of OAEI:benchmarks, conferences, and anatoms, and trained indataset of OAEI 2012, 2013, and 2015. OAEI2016 is for testing.
 The indicators of the result evaluation are still the P value, R value and F1 value.
 The experimental matching system here is a newly developed Lily-TM (Tuning Mapper) with a strategy tuning function.
-Lily-TM's matching algorithm for large ontology anatomy tasks is a direct reuse Lily system. Before the experiment, all the adjustable strategies in Lily's built-in large ontology matching algorithm were found in advance, and a strategy tuning module was implanted in it.
-The rest of the standard benchmark and conference datasets are still tested with Lily-TM.
-The specific experimental steps are to first use the data from the previous three years to build the training set. Specifically, for each set of offline matching tasks, perform a DFS depth-first search in advance to obtain the optimal strategy as the category label of the task sample. Second, use the training set to train the classification. The model and the trained model are built into the Lily-TM system; finally, for unknown matching tasks in the test set, automatic prediction of the strategy path is performed according to its different task characteristics, thereby realizing fully automatic strategy tuning.
+Lily-TM's matching algorithm for large ontology anatomy tasks is a direct reuse of Lily system. Before the experiment, all the adjustable strategies in Lily's built-in large ontology matching algorithm were found, and a strategy tuning module was implanted in it.
+The standard benchmark and conference datasets are still tested with Lily-TM.
+Firstly, for each offline matching task, performs a DFS in advance to obtain the optimal strategy as the category label of the task sample. Second, use the training set to train the classification. Then the trained model are built into the Lily-TM system. Finally, for unknown matching tasks in the test set, automatic prediction of the strategy path is performed according to its different task characteristics, thereby realizing fully automatic strategy tuning.
 
 %\subsubsection{Results and Analysis}
 
 Similar to parameter tuning, the experimental comparison object in strategy tuning still has a set of default strategies. In this section, Avg+Threshold, Harmony+NaiveAscending, Max+Hungarian, Sigmoid+Threshold are used as the default strategies.
-Take the {\it Avg+Threshold} strategy as an example, which means that after the similarity matrix is calculated, the simple similarity method is used to obtain the final similarity matrix, and then the final matching result is extracted from the final similarity matrix by the threshold method. similar.
-{\it ADAPT\_SL} (Supervised Learning) in the figure below shows the matching result of the system after the automatic strategy tuning method based on supervised learning
-
+Take the {\it Avg+Threshold} strategy as an example, which means that after the similarity matrix is calculated, the simple average method is used to obtain the final similarity matrix, and then the final matching result is extracted from the final similarity matrix by the threshold.
+{\it ADAPT\_SL} (Supervised Learning) in the below shows the matching result of the system after the automatic strategy tuning method based on supervised learning
+\begin{figure}[htb!]\centering
+\begin{subfigure}{\textwidth}
+	\centering
+	\includegraphics[width=0.45\textwidth]{figures/sl_legend.pdf}
+\end{subfigure}
+\begin{minipage}{0.5\textwidth}
+	\centering
+	\setlength{\abovecaptionskip}{0pt}
+	\setlength{\belowcaptionskip}{0pt}
+	\includegraphics[width=\textwidth]{data_figs/strategy_Lily.pdf}
+	\captionof{figure}{the strategy tuning result of Lily on anatomy}
+	\label{fig:strategy_Lily}
+\end{minipage}%
+\end{figure}
 In the course of the experiment, the necessity of strategy tuning was indeed discovered.
 It is observed in the experiment that the optimal strategy is different in different matching tasks.
-For example, simple tasks such as simple average fusion and threshold extraction can achieve good matching accuracy; but some tasks require a slightly more complicated harmony algorithm to perform better in the fusion process; some tasks use the matching extraction module. The threshold method has a poor effect but it works well with greedy descending extraction; there are other tasks that use simple average fusion and greedy extraction etc., which are better than harmony fusion and greedy extraction.
-In short, for each type It is necessary and meaningful to automatically predict the optimal matching strategy path for different tasks.
-The following are detailed experimental results on different data sets. All results use F1 value as the evaluation index.
-
-Figure 4.6 depicts the experimental results of strategy tuning on the benchmark dataset.
-In general, the ADAPT strategy after automatic strategy tuning has a higher matching accuracy than the other default fixed strategies, which shows that the strategy tuning methods based on supervised learning proposed in this chapter are very effective.
+For example, simple tasks such as simple average fusion and threshold extraction can achieve good matching accuracy. But some tasks require a slightly more complicated {\it harmony} algorithm to perform better in the fusion process; some tasks of the matching extraction module choosing the threshold method has a poor effect but works well with greedy descending extraction. There are other tasks that use simple average fusion and greedy extraction etc., which are better than {\it harmony} fusion and greedy extraction.
+In short, it is necessary and meaningful to automatically predict the optimal matching strategy path for different tasks.
+The following are detailed experimental results on different data sets.All results use F1 value as the evaluation metric.
+\begin{figure}[htb!]\centering
+\begin{subfigure}{\textwidth}
+	\centering
+	\includegraphics[width=0.45\textwidth]{figures/s_legend.pdf}
+\end{subfigure}
+\begin{minipage}{0.49\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{data_figs/strategy_benchmark.pdf}
+	\captionof{figure}{The result of strategy tuning on benchmark}
+	\label{fig:strategy_benchmark}
+\end{minipage}%
+\begin{minipage}{0.49\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{data_figs/strategy_conference.pdf}
+	\captionof{figure}{The result of strategy tuning on conference}
+	\label{fig:strategy_conference}
+\end{minipage}%
+\end{figure}
+Figure\ref{fig:strategy_benchmark} depicts the experimental results of strategy tuning on the benchmark dataset.
+In general, the ADAPT strategy after automatic strategy tuning has a higher matching accuracy than the other default fixed strategies, which shows that the strategy tuning methods based on supervised learning are very effective.
 On this data set, the ADAPT\_SL strategy has an average accuracy improvement of 25.94\% compared to several other default fixed strategies.
-Among the 248-266 tasks, the ADAPT\_SL strategy is almost 45\% higher than the worst performing strategy SIGMOID+THRESHOLD.
-Under the 221-2247 task, the ADAPT\_SL strategy is not significantly higher than the average value of the remaining individual strategies. Large, it may be that this group of tasks is biased to the structure, and the structure matcher of Lily-TM itself is weak, so its upper limit of tuning is low, and it is difficult to exert the effect of strategy tuning.
+Among the 248-266 task, the ADAPT\_SL strategy is almost 45\% higher than the worst performing strategy SIGMOID+THRESHOLD.
+Under the 221-2247 task, the ADAPT\_SL strategy is not significantly higher than the average value of the remaining individual strategies,which may be that this task is biased to the structure and the structure matcher of Lily-TM is weak, so its upper limit of tuning is too low to exert the effect of strategy tuning.
 
-As shown in Figure 4.7, on the conference dataset, the ADAPT strategy has improved by an average of 15\% compared to several other default fixed strategies. This shows that the automatic strategy tuning method is still effective on the real dataset, but the overall strategy The lower F1 value may be due to the weak performance of the matching algorithm for the real ontology dataset in the Lily-TM system.
+As shown in Figure\ref{fig:strategy_conference}, on the conference dataset, the ADAPT strategy has improved by an average of 15\% compared to several other default fixed strategies. This shows that the automatic strategy tuning method is still effective on the real dataset. However, the overall  F1 value is low ,which may due to the weak performance of the matching algorithm for the real ontology dataset in the Lily-TM system.
 
-Finally, the anatomy data set is shown in Figure 4.8. The ADAPT\_SL after strategy tuning is 5.54\% higher than Lily's default strategy path, which indicates that Lily's original built-in single strategy is not optimal. The strategy is used in different scenarios. After the automatic switching, there is still some room for improvement.
+Finally, the anatomy data set is shown in Figure\ref{fig:strategy_Lily}. The ADAPT\_SL after strategy tuning is 5.54\% higher than Lily's default strategy path, which indicates that Lily's original built-in single strategy is not optimal.After the automatic switching of strategies in different scenarios, there is still some room for improvement.
 
-In summary, the detailed experimental results on various data sets prove that the method of automatic tuning based on machine learning strategies proposed in this chapter is effective and feasible.
-The strategy tuning method based on supervised learning can automatically find a relatively optimal matching strategy according to the characteristics of different matching tasks and according to the rules learned previously by the model.
-This method effectively improves the ease of use of the matching system and further improves The quality of the matching results.
+In summary, the detailed results on various datasets prove that the method of automatic tuning based on machine learning strategies is effective and feasible.
+The strategy tuning method based on supervised learning can automatically find a relatively optimal matching strategy according to the characteristics of different matching tasks and the rules learned previously by the model.
+This method effectively improves the usability of the matching system and further improves The quality of the matching results.
 \section{Conclusions}
 
 In this paper, we propose a series of novel approaches to solve the ontology matching tuning problem.
